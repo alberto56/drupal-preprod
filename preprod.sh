@@ -65,18 +65,12 @@ echo ""
 if [ -a ./scripts/deploy/drupal-preprod-setup.sh ]
   then
     ./scripts/deploy/drupal-preprod-setup.sh
-    echo ""
-    echo "./scripts/deploy/drupal-preprod-setup.sh exists and was called."
-    echo ""
+    echo "[info] ./scripts/deploy/drupal-preprod-setup.sh exists and was called."
   else
-    echo ""
-    echo "./scripts/deploy/drupal-preprod-setup.sh does not exist in $(pwd)."
-    echo ""
+    echo "[info] ./scripts/deploy/drupal-preprod-setup.sh does not exist in $(pwd)."
 fi
 
-echo ""
-echo "Build a new site"
-echo ""
+echo "[info] Build a new site"
 
 if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
   then
@@ -98,22 +92,20 @@ echo "[info] About to attempt to build the preprod site"
 if [ -n "$DB" ]
   then
     ~/drupal-preprod/deploy-preprod.sh -d $DIR/preprod -f $FILES -b $DB
-  if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
-    then
-      ./scripts/deploy/drupal-preprod-post-deploy.sh
-    else
-      echo -e "[info] ./scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
-  else
-    echo -e "[warning] Aborting: DB variable not set, please set it in ./scripts/deploy/drupal-preprod-info.sh"
-fi
+    if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
+      then
+        ./scripts/deploy/drupal-preprod-post-deploy.sh
+      else
+        echo -e "[info] ./scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
+    fi
 
-  cd $DIR/preprod && drush cc all && cd ../..
-else
-  echo "\nCannot deploy preproduction site, plus add a file called"
-  echo "./scripts/deploy/drupal-preprod-info.sh in your Drupal project"
-  echo "and add to it something like:"
-  echo "FILES=https://example.com/myfiles.tar.gz"
-  echo "DB=https://example.com/dbJ.sql.gz\n"
+    cd $DIR/preprod && drush cc all && cd ../..
+  else
+    echo -e "[warning] Cannot deploy preproduction site, plus add a file called"
+    echo -e "          ./scripts/deploy/drupal-preprod-info.sh in your Drupal project"
+    echo -e "          and add to it something like:"
+    echo -e "          FILES=https://example.com/myfiles.tar.gz"
+    echo -e "          DB=https://example.com/dbJ.sql.gz"
 fi
 
 echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
