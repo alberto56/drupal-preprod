@@ -7,16 +7,16 @@ echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 # @param $1
 #   name of an environment, normally new or preprod
 function addEnvironment {
-  echo -e "About to create the $1 environment"
+  echo -e "[info] About to create the $1 environment"
 
   if [ -d "$SUBDIR/$1" ]
     then
       if [ ! -e "$SUBDIR/$1/sites/default/settings.php" ]
         then
-          echo -e "The $1 environment already exists, but has not been properly built"
-          echo -e "because $SUBDIR/$1/sites/default/settings.php does not"
-          echo -e "exist".
-          echo -e "We will delete the entire environment".
+          echo -e "[warning] The $1 environment already exists, but has not been properly built"
+          echo -e "          because $SUBDIR/$1/sites/default/settings.php does not"
+          echo -e "          exist".
+          echo -e "          We will delete the entire environment".
           rm -rf "$SUBDIR/$1"
       fi
   fi
@@ -45,9 +45,7 @@ function addEnvironment {
     echo "</VirtualHost>" >> /var/lib/jenkins/conf.d/$IDENTITY.$1.conf
 
     INDEX="$DIR/drupal-preprod-index/index.html"
-    echo ""
-    echo "About to add a line to $INDEX"
-    echo ""
+    echo -e "[info] About to add a hyperlink to $INDEX"
 
     grep $IDENTITY-$1 "$INDEX" ||  echo "<div><a target=\"_blank\" href=\"http://$DOMAIN\" class=\"$IDENTITY-$1\" id=\"$IDENTITY\">$PROJECT: Commit $HASH of branch $BRANCH ($1) on $(date)</a></div>" >> "$INDEX"
 
@@ -64,13 +62,9 @@ function domain {
 #   name of an environment, normally new or preprod
 function uli {
   cd "$SUBDIR/$1" &&
-  echo "" &&
-  echo "About to generate user 1 one-time login link for $SUBDIR/$1" &&
-  echo "" &&
+  echo -e "[info] About to generate user 1 one-time login link for $SUBDIR/$1" &&
   drush uli &&
-  echo "" &&
-  echo "About to generate authenticated user one-time login link for $SUBDIR/$1" &&
-  echo "" &&
+  echo -e "[info] About to generate authenticated user one-time login link for $SUBDIR/$1" &&
   drush uli authenticated
 }
 
@@ -110,13 +104,13 @@ else
   done
 
   source ~/.drupal-preprod.variables
-  if [ -z "$DELETE" ]; then echo "The argument -z is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$PROJECT" ]; then echo "The argument -p is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$DIR" ]; then echo "The argument -d is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$REPO" ]; then echo "The argument -r is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$BRANCH" ]; then echo "The argument -b is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$HASH" ]; then echo "The argument -h is not set. Execute with no arguments for usage."; exit 1; fi
-  if [ -z "$MYSQLPASS" ]; then echo "MYSQLPASS not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$DELETE" ]; then echo "[error] The argument -z is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$PROJECT" ]; then echo "[error] The argument -p is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$DIR" ]; then echo "[error] The argument -d is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$REPO" ]; then echo "[error] The argument -r is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$BRANCH" ]; then echo "[error] The argument -b is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$HASH" ]; then echo "[error] The argument -h is not set. Execute with no arguments for usage."; exit 1; fi
+  if [ -z "$MYSQLPASS" ]; then echo "[error] MYSQLPASS not set. Execute with no arguments for usage."; exit 1; fi
 
   SANITIZEDPROJECT=$(echo $PROJECT|sed -e 's/_/-/g')
   SANITIZEDBRANCH=$(echo $BRANCH|sed -e 's/\///g')
@@ -124,11 +118,9 @@ else
   SANITIZEDIDENTITY="$SANITIZEDPROJECT-$SANITIZEDBRANCH-$HASH"
   SUBDIR="$DIR/$IDENTITY";
   DBNAME=$(echo $IDENTITY|sed -e 's/-//g')
-  echo ""
-  echo "We have determined that the directory in which to put the environments"
-  echo "is $SUBDIR/preprod"
-  echo "and $SUBDIR/new"
-  echo ""
+  echo "[info] We have determined that the directories in which to put the environments"
+  echo "       are $SUBDIR/preprod"
+  echo "       and $SUBDIR/new"
 
   addEnvironment preprod
   addEnvironment new
