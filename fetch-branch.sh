@@ -15,7 +15,8 @@ function addEnvironment {
     mkdir -p "$SUBDIR" &&
     cd "$SUBDIR" &&
     git clone ../ $1 &&
-    drush si -y --db-url=mysql://root:$MYSQLPASS@localhost/$DBNAME$1
+    cd $1 &&
+    drush si -y --db-url=mysql://root:$MYSQLPASS@localhost/$DBNAME$1 &&
     drush user-create authenticated &&
     chmod u+w $(pwd -P)/sites/default/settings.php
 
