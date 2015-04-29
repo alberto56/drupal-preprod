@@ -17,7 +17,7 @@ function addEnvironment {
     git clone ../ $1 &&
     drush si -y --db-url=mysql://root:$MYSQLPASS@localhost/$DBNAME$1
     drush user-create authenticated &&
-    chmod u+w sites/default/settings.php
+    chmod u+w $(pwd -P)/sites/default/settings.php
 
     domain $1
     echo '$'"base_url = \"http://$DOMAIN\";" >> sites/default/settings.php
