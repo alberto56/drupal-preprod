@@ -20,36 +20,30 @@ for f in *; do
     if [ $f != 'tmp' ]; then
       if [ -e $f/delete.txt ]; then
         if [ $(date +%s) -gt $(cat "$f/delete.txt") ]; then
-          echo ""
-          echo "$(date +%s) is greater than $(cat "$f/delete.txt")"
-          echo "so we will delete the site $f"
-          echo "Removing the directory $f"
-          echo ""
+          echo "[info] $(date +%s) is greater than $(cat $f/delete.txt)"
+          echo "[info] so we will delete the site $f"
+          echo "[info] Removing the directory $f"
           chmod -R u+w "$f"
           rm -rf $f
-          echo ""
-          echo "Removing entries conaining $f in /etc/hosts"
+          echo "[info] Removing entries conaining $f in /etc/hosts"
           # can't use sed -i here because sed -i generates a temporary files
           # which can't be used because of permissions.
           sed "/$f/d" /etc/hosts > ~/etchosts
           cat ~/etchosts > /etc/hosts
           rm ~/etchosts
-          echo ""
           source ~/.drupal-preprod.variables
           DBNAME=$(echo $f|sed -e 's/-//g')
-          echo "Deleting the database $DBNAME""preprod"
+          echo "[info] Deleting the database $DBNAME""preprod"
           echo "drop database IF EXISTS $DBNAME""preprod" |mysql -uroot -p$MYSQLPASS
-          echo "Deleting the database $DBNAME""new"
+          echo "[info] Deleting the database $DBNAME""new"
           echo "drop database IF EXISTS $DBNAME""new" |mysql -uroot -p$MYSQLPASS
-          echo ""
           CONFFILE="/var/lib/jenkins/conf.d/$f.preprod.conf"
-          echo "Removing $CONFFILE"
+          echo "[info] Removing $CONFFILE"
           rm -f $CONFFILE
           CONFFILE="/var/lib/jenkins/conf.d/$f.new.conf"
-          echo "Removing $CONFFILE"
+          echo "[info] Removing $CONFFILE"
           rm -f $CONFFILE
-          echo ""
-          echo "Removing lines containing $f in the index.hml"
+          echo "[info] Removing lines containing $f in the index.hml"
           sed -i "/$f/d" drupal-preprod-index/index.html
         fi
       fi

@@ -41,15 +41,12 @@ echo ""
 
 DIR=$PROJECT-$(echo $BRANCH|sed -e 's/\///g')-$HASH
 
-echo ""
-echo "Figure out a base directory name: $DIR"
-echo ""
-
-echo ""
-echo "Create the environments"
-echo ""
+echo "[info] Figure out a base directory name: $DIR"
+echo "[info] About to attempt to create environments"
 
 REPO=$(git config --get remote.origin.url)
+
+echo "[info] Repo is $REPO"
 
 ~/drupal-preprod/fetch-branch.sh -d "$(pwd -P)" -r "$REPO" -b "$BRANCH" -h "$HASH" -p $PROJECT -z $DELETE
 
