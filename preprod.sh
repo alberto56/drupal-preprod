@@ -68,6 +68,12 @@ echo ""
 if [ -n "$DB" ]
   then
     ~/drupal-preprod/deploy-preprod.sh -d $DIR/preprod -f $FILES -b $DB
+  if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
+    then
+      ./scripts/deploy/drupal-preprod-post-deploy.sh
+  fi
+
+  cd $DIR/preprod && drush cc all && cd ../..
 else
   echo ""
   echo "Cannot deploy preproduction site, plus add a file called"
@@ -77,12 +83,3 @@ else
   echo "DB=https://example.com/dbJ.sql.gz"
   echo ""
 fi
-
-
-
-if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
-  then
-    ./scripts/deploy/drupal-preprod-post-deploy.sh
-fi
-
-cd $DIR/preprod && drush cc all && cd ../..
