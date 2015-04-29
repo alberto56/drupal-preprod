@@ -24,7 +24,7 @@ Getting started
  * Install a Jenkins box, for example [vagrant-jenkins](https://github.com/alberto56/vagrant-jenkins)
  * Make sure your `jenkins` user has access to restart apache and can modify ` /var/lib/jenkins/conf.d/` and `/etc/host`. You can use `visudo` and linux groups for that (ask someone who knows Linux).
  * Switch users so you are jenkins (`sudo su -s /bin/bash jenkins`)
- * Start by putting `drupal-preprod` at `~/drupal-preprod`.
+ * Start by putting `drupal-preprod` directly in the home of the Jenkins user so it's accessible at `~/drupal-preprod`. This code should not reside inside your Drupal projects.
  * Create a Jenkins job at `/path/to/job`.
  * Create a virtual host entry so that `/path/to/job/drupal-preprod-index/index.html` exists and is accessible through the web at http://drupal-preprod.example.com/
  * Make sure you have some sort of authentication or VPN to avoid the public seeing your sites, because they may contain sensitive data.
