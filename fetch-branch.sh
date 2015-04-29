@@ -68,7 +68,7 @@ if [ "$#" -eq "0" ]
     echo ""
     echo "Usage:"
     echo ""
-    echo "Start by creating a file called ~/.fetch-branch.variables with MYSQLPASS=mypassword"
+    echo "Start by creating a file called ~/.drupal-preprod.variables with MYSQLPASS=mypassword"
     echo ""
     echo "-z : delete in number of days. This creates a file called delete.txt in repo/HASH which contains a timestamp"
     echo "     in a set number of days, so that it can get deleted automatically"
