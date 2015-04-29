@@ -66,4 +66,6 @@ The above will install CentoOS, a LAMP stack, and run a few tests.
 
 Tests are also run continuously with the excellent free [CircleCI](https://circleci.com) continuous integration service.
 
-Here is the current state of this project.
+Here is the current state of this project:
+
+[![Circle CI](https://circleci.com/gh/alberto56/drupal-preprod/tree/master.svg?style=svg)](https://circleci.com/gh/alberto56/drupal-preprod/tree/master)
