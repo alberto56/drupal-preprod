@@ -7,9 +7,17 @@ echo "* * * * * * * * * * * * * * * * * * * * * * * * "
 # @param $1
 #   name of an environment, normally new or preprod
 function addEnvironment {
-  echo ""
-  echo "About to create the $1 environment"
-  echo ""
+  echo -e "About to create the $1 environment"
+
+  if [ -d "$SUBDIR/$1" ]
+    then
+      if [ ! -e "$SUBDIR/$1/sites/default/settings.php" ]
+        echo -e "The $1 environment already exists, but has not been properly built"
+        echo -e "because $SUBDIR/$1/sites/default/settings.php does not"
+        echo -e "exist".
+        echo -e "We will delete the entire environment".
+        rm -rf "$SUBDIR/$1"
+  fi
 
   if [ ! -d "$SUBDIR/$1" ]; then
     mkdir -p "$SUBDIR" &&
