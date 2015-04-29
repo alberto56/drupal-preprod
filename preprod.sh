@@ -13,14 +13,17 @@ echo "Project set to be deleted in $DELETE\n"
 if [ -z $PROJECT ]
   then
     echo -e "\nExiting: you must specify the project.\n"
+    exit 1
 fi
 if [ -z $BRANCH ]
   then
     echo -e "\nExiting: you must specify the branch.\n"
+    exit 1
 fi
 if [ -z $DELETE ]
   then
     echo -e "\nExiting: you must specify the number of days to keep this live even if it's zero (0).\n"
+    exit 1
 fi
 
 HASH=$(git log -n1 --pretty='%h')
