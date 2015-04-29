@@ -32,10 +32,13 @@ set -e
 # @param $1
 #   The directory name, e.g. myproject-master-abc123
 
-for f in "$MAINWORKSPACE"; do
+cd "$MAINWORKSPACE"
+
+for f in *; do
   if [[ -d $f ]]; then
     if [ $f != 'tmp' ]; then
-      echo $f | grep -v $1 || echo -e "\n\n" && cd $f && drush uli && drush uli authenticated && echo -e "\n\n" && cd ..
+      echo -e 'file is ' "$f $1"
+      echo $f | grep $1 && echo -e "\n\n" && cd $f/new && drush uli && echo -e "\n\n" && cd ../.. && cd $f/preprod && drush uli && echo -e "\n\n"
     fi
   fi
 done
