@@ -6,23 +6,23 @@ PROJECT=$1
 BRANCH=$2
 DELETE=$3
 
-echo -e "\nProject is $PROJECT"
-echo -e "Branch is $BRANCH"
-echo -e "Project set to be deleted in $DELETE\n"
+echo -e "[info] Project is $PROJECT"
+echo -e "[info] Branch is $BRANCH"
+echo -e "[info] Project set to be deleted in $DELETE\n"
 
 if [ -z $PROJECT ]
   then
-    echo -e "\nExiting: you must specify the project.\n"
+    echo -e "[error] Exiting: you must specify the project.\n"
     exit 1
 fi
 if [ -z $BRANCH ]
   then
-    echo -e "\nExiting: you must specify the branch.\n"
+    echo -e "[error] Exiting: you must specify the branch.\n"
     exit 1
 fi
 if [ -z $DELETE ]
   then
-    echo -e "\nExiting: you must specify the number of days to keep this live even if it's zero (0).\n"
+    echo -e "[error] Exiting: you must specify the number of days to keep this live even if it's zero (0).\n"
     exit 1
 fi
 
@@ -33,9 +33,7 @@ if [ -c ./scripts/deploy/drupal-preprod-info.sh ]
     source ./scripts/deploy/drupal-preprod-info.sh
 fi
 
-echo ""
-echo "Start by deleting old environments which passed their shelf life"
-echo ""
+echo "[info] Start by deleting old environments which passed their shelf life"
 
 ~/drupal-preprod/delete-old.sh
 
@@ -50,17 +48,15 @@ echo "[info] Repo is $REPO"
 
 ~/drupal-preprod/fetch-branch.sh -d "$(pwd -P)" -r "$REPO" -b "$BRANCH" -h "$HASH" -p $PROJECT -z $DELETE
 
+echo "[info] If ./scripts/deploy/drupal-preprod-setup.sh exists in your project, calling"
+echo "       it now; You should put any commands there which might be necessary to run"
+echo "       your Drupal site, for example setting up symlinks between sites/default and"
+echo "       sites/foo if you are using multisite."
 echo ""
-echo "If ./scripts/deploy/drupal-preprod-setup.sh exists in your project, calling"
-echo "it now; You should put any commands there which might be necessary to run"
-echo "your Drupal site, for example setting up symlinks between sites/default and"
-echo "sites/foo if you are using multisite."
-echo ""
-echo "If you do use ./scripts/deploy/drupal-preprod-setup.sh, make sure you cd"
-echo "into each environment (new and preprod), for example:"
-echo "cd $DIR/new && DO SOMETHING && cd ../.."
-echo "cd $DIR/preprod && DO SOMETHING && cd ../.."
-echo ""
+echo "       If you do use ./scripts/deploy/drupal-preprod-setup.sh, make sure you cd"
+echo "       into each environment (new and preprod), for example:"
+echo "       cd $DIR/new && DO SOMETHING && cd ../.."
+echo "       cd $DIR/preprod && DO SOMETHING && cd ../.."
 
 if [ -a ./scripts/deploy/drupal-preprod-setup.sh ]
   then
@@ -79,11 +75,11 @@ if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
       then
         ~/drupal-preprod/deploy-new.sh -d $DIR/new -m $DEPLOYMODULES
       else
-        echo -e "\nUnable to build a new site without cloning the database;"
-        echo -e "please add 'DEPLOYMODULES=\"mysite_deploy mysite_devel\"'"
-        echo -e "to the file DRUPAL_ROOT/scripts/deploy/drupal-preprod-info.sh"
-        echo -e "so I can know which modules you want to enable. See also"
-        echo -e "http://dcycleproject.org/blog/44/what-site-deployment-module\n"
+        echo -e "[warning] Unable to build a new site without cloning the database;"
+        echo -e "          please add 'DEPLOYMODULES=\"mysite_deploy mysite_devel\"'"
+        echo -e "          to the file DRUPAL_ROOT/scripts/deploy/drupal-preprod-info.sh"
+        echo -e "          so I can know which modules you want to enable. See also"
+        echo -e "          http://dcycleproject.org/blog/44/what-site-deployment-module\n"
     fi
 fi
 
