@@ -28,12 +28,27 @@ echo ""
 ~/drupal-preprod/fetch-branch.sh -d "$(pwd -P)" -r "$REPO" -b "$BRANCH" -h "$HASH" -p $PROJECT -z $DELETE
 
 echo ""
-echo "Set symlinks to sites/default correctly"
+echo "If ./scripts/deploy/drupal-preprod-setup.sh exists in your project, calling"
+echo "it now; You should put any commands there which might be necessary to run"
+echo "your Drupal site, for example setting up symlinks between sites/default and"
+echo "sites/foo if you are using multisite."
+echo ""
+echo "If you do use ./scripts/deploy/drupal-preprod-setup.sh, make sure you cd"
+echo "into each environment (new and preprod), for example:"
+echo "cd $DIR/new && DO SOMETHING && cd ../.."
+echo "cd $DIR/preprod && DO SOMETHING && cd ../.."
 echo ""
 
 if [ -c ./scripts/deploy/drupal-preprod-setup.sh ]
   then
     ./scripts/deploy/drupal-preprod-setup.sh
+    echo ""
+    echo "./scripts/deploy/drupal-preprod-setup.sh exists and was called."
+    echo ""
+  else
+    echo ""
+    echo "./scripts/deploy/drupal-preprod-setup.sh does not exist."
+    echo ""
 fi
 
 echo ""
