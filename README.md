@@ -3,6 +3,11 @@ Drupal Preprod
 
 This collection of scripts is meant to be put on a Jenkins box, to deploy preproduction versions of any branch on any project.
 
+Project homepage and issue queue
+-----
+
+[The project lives on GitHub](https://github.com/alberto56/drupal-preprod).
+
 How it works
 -----
 
@@ -53,7 +58,7 @@ When you run your job, previous jobs which have outlived their shelf life will b
 
 You can now run your job, and when you hit http://drupal-preprod.example.com, you will see a list of all your environments.
 
-Testing
+Testing and continuous integration
 -----
 
 Limited tests are provided, using a Dockerfile. To test this, you can
