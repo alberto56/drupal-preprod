@@ -60,8 +60,8 @@ echo "       cd "'$1'"/preprod && DO SOMETHING && cd ../.."
 
 if [ -a ./scripts/deploy/drupal-preprod-setup.sh ]
   then
-    ./scripts/deploy/drupal-preprod-setup.sh $(pwd)
-    echo "[info] ./scripts/deploy/drupal-preprod-setup.sh exists and was called."
+    ./scripts/deploy/drupal-preprod-setup.sh $DIR
+    echo "[info] ./scripts/deploy/drupal-preprod-setup.sh exists and was called with the argument $DIR."
   else
     echo "[info] ./scripts/deploy/drupal-preprod-setup.sh does not exist in $(pwd)."
 fi
