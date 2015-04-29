@@ -26,7 +26,7 @@ else
     esac
   done
 
-  source ~/.fetch-branch.variables
+  source ~/.drupal-preprod.variables
   source ~/.bash_profile
 
   if [ -z "$DIR" ]; then echo "The argument -d is not set. Execute with no arguments for usage."; exit 1; fi

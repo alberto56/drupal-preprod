@@ -25,6 +25,8 @@ echo ""
 echo "Create the environments"
 echo ""
 
+$REPO=$(git config --get remote.origin.url)
+
 ~/drupal-preprod/fetch-branch.sh -d "$(pwd -P)" -r "$REPO" -b "$BRANCH" -h "$HASH" -p $PROJECT -z $DELETE
 
 echo ""
