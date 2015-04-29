@@ -55,8 +55,8 @@ echo "       sites/foo if you are using multisite."
 echo ""
 echo "       If you do use ./scripts/deploy/drupal-preprod-setup.sh, make sure you cd"
 echo "       into each environment (new and preprod), for example:"
-echo "       cd $DIR/new && DO SOMETHING && cd ../.."
-echo "       cd $DIR/preprod && DO SOMETHING && cd ../.."
+echo "       cd "'$1'"/new && DO SOMETHING && cd ../.."
+echo "       cd "'$1'"/preprod && DO SOMETHING && cd ../.."
 
 if [ -a ./scripts/deploy/drupal-preprod-setup.sh ]
   then

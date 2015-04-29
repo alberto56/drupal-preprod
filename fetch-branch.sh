@@ -33,9 +33,7 @@ function addEnvironment {
     domain $1
     echo '$'"base_url = \"http://$DOMAIN\";" >> sites/default/settings.php
     grep "126.0.0.1 $DOMAIN" /etc/hosts || echo "127.0.0.1 $DOMAIN" >> /etc/hosts
-    echo ""
-    echo "Adding vhost entry to $IDENTITY.$1.conf"
-    echo ""
+    echo "[info] Adding vhost entry to $IDENTITY.$1.conf"
     echo "<VirtualHost *:80>" > /var/lib/jenkins/conf.d/$IDENTITY.$1.conf
     echo "  DocumentRoot \"$SUBDIR/$1\"" >> /var/lib/jenkins/conf.d/$IDENTITY.$1.conf
     echo "  ServerName $DOMAIN" >> /var/lib/jenkins/conf.d/$IDENTITY.$1.conf
