@@ -88,11 +88,11 @@ echo "[info] About to attempt to build the preprod site"
 if [ -n "$DB" ]
   then
     ~/drupal-preprod/deploy-preprod.sh -d $DIR/preprod -f $FILES -b $DB
-    if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
+    if [ -e ./scripts/deploy/drupal-preprod-post-deploy.sh ]
       then
         ./scripts/deploy/drupal-preprod-post-deploy.sh
       else
-        echo -e "[info] ./scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
+        echo -e "[info] $(pwd)/scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
     fi
 
     cd $DIR/preprod && drush cc all && cd ../..
