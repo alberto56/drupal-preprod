@@ -1,8 +1,11 @@
 # This file should exist in
 # ~/.drupal-preprod.variables
 # An example can be found at https://github.com/alberto56/drupal-preprod
+# The main workspace is where your main Jenkins job workspace. It will be
+# used by the Onetime login link job (see README.md).
 
 MYSQLPASS=
+MAINWORKSPACE=/opt/jenkins/workspace/preprod
 
 # You will need to set up wildcard subdomains to access your evironments.
 # If your wildcard schema is me.*.example.com, set DOMAINBEFORE=me. and

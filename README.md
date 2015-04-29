@@ -58,6 +58,15 @@ When you run your job, previous jobs which have outlived their shelf life will b
 
 You can now run your job, and when you hit http://drupal-preprod.example.com, you will see a list of all your environments.
 
+Logging into temporary environments
+-----
+
+Create a new parametrizable Jenkins job which takes a parameter called COMMIT, and then make sure the build script is:
+
+    ~/drupal-preprod/uli.sh $COMMIT
+
+Running this will give you login information for all your environments which have that commit number.
+
 Testing and continuous integration
 -----
 
