@@ -10,6 +10,19 @@ echo "\nProject is $PROJECT"
 echo "Branch is $BRANCH"
 echo "Project set to be deleted in $DELETE\n"
 
+if [ -z $PROJECT ]
+  then
+    echo -e "\nExiting: you must specify the project.\n"
+fi
+if [ -z $BRANCH ]
+  then
+    echo -e "\nExiting: you must specify the branch.\n"
+fi
+if [ -z $DELETE ]
+  then
+    echo -e "\nExiting: you must specify the number of days to keep this live even if it's zero (0).\n"
+fi
+
 HASH=$(git log -n1 --pretty='%h')
 
 if [ -c ./scripts/deploy/drupal-preprod-info.sh ]
