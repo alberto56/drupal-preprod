@@ -73,7 +73,7 @@ if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
     source ./scripts/deploy/drupal-preprod-info.sh
     if [ -n "$DEPLOYMODULES" ]
       then
-        ~/drupal-preprod/deploy-new.sh -d $DIR/new -m $DEPLOYMODULES
+        ~/drupal-preprod/deploy-new.sh -d $DIR/new -m "$DEPLOYMODULES"
       else
         echo -e "[warning] Unable to build a new site without cloning the database;"
         echo -e "          please add 'DEPLOYMODULES=\"mysite_deploy mysite_devel\"'"
