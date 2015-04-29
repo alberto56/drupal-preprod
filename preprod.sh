@@ -90,7 +90,8 @@ if [ -n "$DB" ]
     ~/drupal-preprod/deploy-preprod.sh -d $DIR/preprod -f $FILES -b $DB
     if [ -e ./scripts/deploy/drupal-preprod-post-deploy.sh ]
       then
-        ./scripts/deploy/drupal-preprod-post-deploy.sh
+        echo -e "[info] $(pwd)/scripts/deploy/drupal-preprod-post-deploy.sh does exist and will be run now"
+        ./scripts/deploy/drupal-preprod-post-deploy.sh "$DIR"
       else
         echo -e "[info] $(pwd)/scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
     fi
