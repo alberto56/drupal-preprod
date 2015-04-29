@@ -58,7 +58,16 @@ echo ""
 if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
   then
     source ./scripts/deploy/drupal-preprod-info.sh
-    ~/drupal-preprod/deploy-new.sh -d $DIR/new -m $DEPLOYMODULES
+    if [ -n "$DEPLOYMODULES" ]
+      then
+        ~/drupal-preprod/deploy-new.sh -d $DIR/new -m $DEPLOYMODULES
+      else
+        echo -e "\nUnable to build a new site without cloning the database;"
+        echo -e "please add 'DEPLOYMODULES=\"mysite_deploy mysite_devel\"'"
+        echo -e "to the file DRUPAL_ROOT/scripts/deploy/drupal-preprod-info.sh"
+        echo -e "so I can know which modules you want to enable. See also"
+        echo -e "http://dcycleproject.org/blog/44/what-site-deployment-module\n"
+    fi
 fi
 
 echo ""
@@ -71,7 +80,7 @@ if [ -n "$DB" ]
   if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
     then
       ./scripts/deploy/drupal-preprod-post-deploy.sh
-  fi
+fi
 
   cd $DIR/preprod && drush cc all && cd ../..
 else
