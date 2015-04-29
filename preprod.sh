@@ -1,10 +1,14 @@
+echo "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo "preprod.sh"
+echo "* * * * * * * * * * * * * * * * * * * * * * * * \n"
+
 PROJECT=$1
 BRANCH=$2
-DELETE$3
+DELETE=$3
 
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "preprod.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo "\nProject is $PROJECT"
+echo "Branch is $BRANCH"
+echo "Project set to be deleted in $DELETE\n"
 
 HASH=$(git log -n1 --pretty='%h')
 
