@@ -12,11 +12,12 @@ function addEnvironment {
   if [ -d "$SUBDIR/$1" ]
     then
       if [ ! -e "$SUBDIR/$1/sites/default/settings.php" ]
-        echo -e "The $1 environment already exists, but has not been properly built"
-        echo -e "because $SUBDIR/$1/sites/default/settings.php does not"
-        echo -e "exist".
-        echo -e "We will delete the entire environment".
-        rm -rf "$SUBDIR/$1"
+        then
+          echo -e "The $1 environment already exists, but has not been properly built"
+          echo -e "because $SUBDIR/$1/sites/default/settings.php does not"
+          echo -e "exist".
+          echo -e "We will delete the entire environment".
+          rm -rf "$SUBDIR/$1"
       fi
   fi
 
