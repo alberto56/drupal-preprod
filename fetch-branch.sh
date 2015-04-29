@@ -17,6 +17,7 @@ function addEnvironment {
         echo -e "exist".
         echo -e "We will delete the entire environment".
         rm -rf "$SUBDIR/$1"
+      fi
   fi
 
   if [ ! -d "$SUBDIR/$1" ]; then
