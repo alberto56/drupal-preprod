@@ -1,0 +1,13 @@
+# This file should exist in
+# ~/.drupal-preprod.variables
+# An example can be found at https://github.com/alberto56/drupal-preprod
+
+MYSQLPASS=
+
+# You will need to set up wildcard subdomains to access your evironments.
+# If your wildcard schema is me.*.example.com, set DOMAINBEFORE=me. and
+# DOMAINAFTER=.example.com; and you will end up with domains such
+# as me.project-master-bf2cf2b.example.com, for commit bf2cf2b of the
+# branch master of the project "project".
+DOMAINBEFORE=me.
+DOMAINAFTER=.example.com
