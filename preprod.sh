@@ -1,14 +1,14 @@
-echo "\n* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "preprod.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * \n"
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "preprod.sh"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 
 PROJECT=$1
 BRANCH=$2
 DELETE=$3
 
-echo "\nProject is $PROJECT"
-echo "Branch is $BRANCH"
-echo "Project set to be deleted in $DELETE\n"
+echo -e "\nProject is $PROJECT"
+echo -e "Branch is $BRANCH"
+echo -e "Project set to be deleted in $DELETE\n"
 
 if [ -z $PROJECT ]
   then
@@ -49,7 +49,7 @@ echo ""
 echo "Create the environments"
 echo ""
 
-$REPO=$(git config --get remote.origin.url)
+REPO=$(git config --get remote.origin.url)
 
 ~/drupal-preprod/fetch-branch.sh -d "$(pwd -P)" -r "$REPO" -b "$BRANCH" -h "$HASH" -p $PROJECT -z $DELETE
 
