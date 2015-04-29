@@ -2,6 +2,10 @@ PROJECT=$1
 BRANCH=$2
 DELETE$3
 
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo "preprod.sh"
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+
 HASH=$(git log -n1 --pretty='%h')
 
 if [ -c ./scripts/deploy/drupal-preprod-info.sh ]

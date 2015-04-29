@@ -3,6 +3,10 @@
 # Deploys a new Drupal site using a clone of another site by loading its files and
 # database.
 
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo "deploy-preprod.sh"
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+
 set -e
 
 if [ "$#" -eq "0" ]

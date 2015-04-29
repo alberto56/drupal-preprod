@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo "fetch-branch.sh"
+echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+
 # @param $1
 #   name of an environment, normally new or preprod
 function addEnvironment {
