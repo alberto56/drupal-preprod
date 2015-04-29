@@ -47,7 +47,7 @@ if [ -c ./scripts/deploy/drupal-preprod-setup.sh ]
     echo ""
   else
     echo ""
-    echo "./scripts/deploy/drupal-preprod-setup.sh does not exist."
+    echo "./scripts/deploy/drupal-preprod-setup.sh does not exist in $(pwd)."
     echo ""
 fi
 
