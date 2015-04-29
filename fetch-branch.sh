@@ -94,7 +94,7 @@ else
     esac
   done
 
-  source ~/.docker-preprod.variables
+  source ~/.drupal-preprod.variables
   if [ -z "$DELETE" ]; then echo "The argument -z is not set. Execute with no arguments for usage."; exit 1; fi
   if [ -z "$PROJECT" ]; then echo "The argument -p is not set. Execute with no arguments for usage."; exit 1; fi
   if [ -z "$DIR" ]; then echo "The argument -d is not set. Execute with no arguments for usage."; exit 1; fi
