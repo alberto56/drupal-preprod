@@ -39,7 +39,7 @@ echo "cd $DIR/new && DO SOMETHING && cd ../.."
 echo "cd $DIR/preprod && DO SOMETHING && cd ../.."
 echo ""
 
-if [ -c ./scripts/deploy/drupal-preprod-setup.sh ]
+if [ -a ./scripts/deploy/drupal-preprod-setup.sh ]
   then
     ./scripts/deploy/drupal-preprod-setup.sh
     echo ""
@@ -55,7 +55,7 @@ echo ""
 echo "Build a new site"
 echo ""
 
-if [ -c ./scripts/deploy/drupal-preprod-info.sh ]
+if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
   then
     source ./scripts/deploy/drupal-preprod-info.sh
     ~/drupal-preprod/deploy-new.sh -d $DIR/new -m $DEPLOYMODULES
