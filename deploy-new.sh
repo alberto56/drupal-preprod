@@ -3,9 +3,9 @@
 # Deploys a new Drupal site using its site deployment module and potentially its
 # devel module. See http://dcycleproject.org/blog/44/what-site-deployment-module
 
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "deploy-new.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "deploy-new.sh"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 
 set -e
 
@@ -47,3 +47,7 @@ else
   /bin/drush uli &&
   /bin/drush uli authenticated
 fi
+
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "deploy-new.sh end of script"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"

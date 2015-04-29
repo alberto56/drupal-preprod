@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "fetch-branch.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "fetch-branch.sh"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 
 # @param $1
 #   name of an environment, normally new or preprod
@@ -139,3 +139,7 @@ else
   echo $(echo "$(date +%s)+$DELETE*24*60*60"|bc) > "$SUBDIR/delete.txt"
 
 fi
+
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "fetch-branch.sh end of script"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"

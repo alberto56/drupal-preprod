@@ -6,9 +6,9 @@
 # folder, but the /etc/hosts entry, the vhosts entry, the database and anything
 # else that made up that website.
 
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "delete-old.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "delete-old.sh"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 
 set -e
 
@@ -56,3 +56,7 @@ for f in *; do
     fi
   fi
 done
+
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "delete-old.sh end of script"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"

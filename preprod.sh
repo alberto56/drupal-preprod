@@ -96,9 +96,7 @@ if [ -a ./scripts/deploy/drupal-preprod-info.sh ]
     fi
 fi
 
-echo ""
-echo "Build the preprod site"
-echo ""
+echo "[info] About to attempt to build the preprod site"
 
 if [ -n "$DB" ]
   then
@@ -106,15 +104,21 @@ if [ -n "$DB" ]
   if [ -c ./scripts/deploy/drupal-preprod-post-deploy.sh ]
     then
       ./scripts/deploy/drupal-preprod-post-deploy.sh
+    else
+      echo -e "[info] ./scripts/deploy/drupal-preprod-post-deploy.sh does not exist"
+  else
+    echo -e "[warning] Aborting: DB variable not set, please set it in ./scripts/deploy/drupal-preprod-info.sh"
 fi
 
   cd $DIR/preprod && drush cc all && cd ../..
 else
-  echo ""
-  echo "Cannot deploy preproduction site, plus add a file called"
+  echo "\nCannot deploy preproduction site, plus add a file called"
   echo "./scripts/deploy/drupal-preprod-info.sh in your Drupal project"
   echo "and add to it something like:"
   echo "FILES=https://example.com/myfiles.tar.gz"
-  echo "DB=https://example.com/dbJ.sql.gz"
-  echo ""
+  echo "DB=https://example.com/dbJ.sql.gz\n"
 fi
+
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "preprod.sh end of script"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"

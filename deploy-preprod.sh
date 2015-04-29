@@ -3,9 +3,9 @@
 # Deploys a new Drupal site using a clone of another site by loading its files and
 # database.
 
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
-echo "deploy-preprod.sh"
-echo "* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "deploy-preprod.sh"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
 
 set -e
 
@@ -53,3 +53,7 @@ else
   zcat ~/$PROJECT/*.sql.gz | drush sqlc
 
 fi
+
+echo -e "\n* * * * * * * * * * * * * * * * * * * * * * * * "
+echo -e "deploy-preprod.sh end of script"
+echo -e "* * * * * * * * * * * * * * * * * * * * * * * * \n"
