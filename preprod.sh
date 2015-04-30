@@ -98,7 +98,7 @@ if [ -n "$DB" ]
 
     cd $DIR/preprod && drush cc all && cd ../..
   else
-    echo -e "[warning] Cannot deploy preproduction site, plus add a file called"
+    echo -e "[warning] Cannot deploy preproduction site, please add a file called"
     echo -e "          ./scripts/deploy/drupal-preprod-info.sh in your Drupal project"
     echo -e "          and add to it something like:"
     echo -e "          FILES=https://example.com/myfiles.tar.gz"
