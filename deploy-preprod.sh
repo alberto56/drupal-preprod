@@ -42,6 +42,13 @@ else
   SUBDIR="$DIR/$IDENTITY";
   DBNAME=$(echo $IDENTITY|sed -e 's/-//g')
 
+  if [ -z "$BRANCH" ]; then echo "Internal error: the variable BRANCH is not set."; exit 1; fi
+  if [ -z "$SANITIZEDBRANCH" ]; then echo "Internal error: the variable SANITIZEDBRANCH is not set."; exit 1; fi
+  if [ -z "$IDENTITY" ]; then echo "Internal error: the variable IDENTITY is not set."; exit 1; fi
+  if [ -z "$SUBDIR" ]; then echo "Internal error: the variable SUBDIR is not set."; exit 1; fi
+  if [ -z "$DBNAME" ]; then echo "Internal error: the variable DBNAME is not set."; exit 1; fi
+  if [ -z "$DIR" ]; then echo "Internal error: the variable DIR is not set."; exit 1; fi
+
   echo "[info] BRANCH is $BRANCH"
   echo "[info] SANITIZEDBRANCH is $SANITIZEDBRANCH"
   echo "[info] IDENTITY is $IDENTITY"
