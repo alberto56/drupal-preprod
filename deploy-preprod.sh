@@ -42,8 +42,11 @@ else
   SUBDIR="$DIR/$IDENTITY";
   DBNAME=$(echo $IDENTITY|sed -e 's/-//g')
 
-  echo "Path is $DIR" &&
-  echo "" &&
+  echo "[info] SANITIZEDBRANCH is $SANITIZEDBRANCH"
+  echo "[info] IDENTITY is $IDENTITY"
+  echo "[info] SUBDIR is $SUBDIR"
+  echo "[info] DBNAME is $DBNAME"
+  echo "[info] DIR is $DIR"
   cd "$DIR" &&
   echo "drop database $DBNAME; create database $DBNAME charset utf8;" | drush sqlc
   mkdir -p ~/$PROJECT
