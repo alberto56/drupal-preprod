@@ -67,7 +67,7 @@ else
   echo "drop database $DBNAME if exists; create database $DBNAME charset utf8;" | drush sqlc
   mkdir -p ~/$PROJECT
   wget --progress=dot:giga -N $FILES -P ~/$PROJECT
-  tar -xzf ~/$PROJECT/*.tar.gz
+  tar -xzf ~/$PROJECT/$FILES
   wget --progress=dot:giga -N $DB -P ~/$PROJECT
   zcat ~/$PROJECT/*.sql.gz | drush sqlc
 
