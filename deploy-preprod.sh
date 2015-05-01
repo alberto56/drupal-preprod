@@ -68,10 +68,16 @@ else
   echo "[info] About to run $QUERY"
   echo $QUERY | drush sqlc
   mkdir -p ~/deploy-preprod-user-data/$PROJECT
-  wget --output-document files.tar.gz --progress=dot:giga -N $FILES -P ~/deploy-preprod-user-data/$PROJECT
-  tar -xzf ~/deploy-preprod-user-data/$PROJECT/files.tar.gz
-  wget --output-document sql.sql.gz --progress=dot:giga -N $DB -P ~/deploy-preprod-user-data/$PROJECT
-  zcat ~/deploy-preprod-user-data/$PROJECT/sql.sql.gz | drush sqlc
+  $FILESNAME = echo $FILES|sed 's/.*\///g';
+  $DBNAME = echo $DB|sed 's/.*\///g';
+  echo -e "[info] FILES is $FILES"
+  echo -e "[info] DB is $DB"
+  echo -e "[info] FILESNAME is $FILESNAME"
+  echo -e "[info] DBNAME is $DBNAME"
+  wget --progress=dot:giga -N $FILES -P ~/deploy-preprod-user-data/$PROJECT
+  tar -xzf ~/deploy-preprod-user-data/$PROJECT/$FILESNAME
+  wget --progress=dot:giga -N $DB -P ~/deploy-preprod-user-data/$PROJECT
+  zcat ~/deploy-preprod-user-data/$PROJECT/$$DBNAME | drush sqlc
 
 fi
 
