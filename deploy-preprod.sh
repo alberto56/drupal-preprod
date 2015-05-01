@@ -15,7 +15,7 @@ if [ "$#" -eq "0" ]
     echo ""
     echo "Usage:"
     echo ""
-    echo "./deploy-preprod.sh -p project -h abc123 -d /path/to/drupal -f 'https://example.com/files.tar.gz -b http://example.com/database.sql.gz'"
+    echo "./deploy-preprod.sh -r mybranch -p project -h abc123 -d /path/to/drupal -f 'https://example.com/files.tar.gz -b http://example.com/database.sql.gz'"
 else
   while getopts ":d:f:b:r:p:h:" opt; do
     case $opt in
@@ -25,7 +25,7 @@ else
       ;;
       d) DIR="$OPTARG"
       ;;
-      r) BRANCH="$BRANCH"
+      r) BRANCH="$OPTARG"
       ;;
       f) FILES="$OPTARG"
       ;;
