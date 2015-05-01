@@ -25,7 +25,7 @@ else
       ;;
       d) DIR="$OPTARG"
       ;;
-      d) BRANCH="$BRANCH"
+      r) BRANCH="$BRANCH"
       ;;
       f) FILES="$OPTARG"
       ;;
