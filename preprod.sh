@@ -8,7 +8,7 @@ DELETE=$3
 
 echo -e "[info] Project is $PROJECT"
 echo -e "[info] Branch is $BRANCH"
-echo -e "[info] Project set to be deleted in $DELETE\n"
+echo -e "[info] Project set to be deleted in $DELETE day(s)"
 
 if [ -z $PROJECT ]
   then
