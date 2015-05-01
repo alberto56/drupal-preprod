@@ -34,14 +34,11 @@ else
   if [ -z "$DIR" ]; then echo "The argument -d is not set. Execute with no arguments for usage."; exit 1; fi
   if [ -z "$MODULES" ]; then echo "The argument -m is not set. Execute with no arguments for usage."; exit 1; fi
 
-  echo "" &&
-  echo "Path is $DIR" &&
-  echo "" &&
-  cd "$DIR" &&
-  pwd &&
-  echo "" &&
-  echo "$MODULES" &&
-  echo "" &&
+  echo -e "[info] Path is $DIR"
+  cd "$DIR"
+  echo -e "[info] Currently in $(pwd)"
+  echo "[info] Modules are $MODULES"
+
   /bin/drush -y en $MODULES &&
   /bin/drush generate-realistic || true  &&
   /bin/drush uli &&
