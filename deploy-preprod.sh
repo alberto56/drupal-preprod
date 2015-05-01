@@ -42,6 +42,7 @@ else
   SUBDIR="$DIR/$IDENTITY";
   DBNAME=$(echo $IDENTITY|sed -e 's/-//g')
 
+  echo "[info] BRANCH is $BRANCH"
   echo "[info] SANITIZEDBRANCH is $SANITIZEDBRANCH"
   echo "[info] IDENTITY is $IDENTITY"
   echo "[info] SUBDIR is $SUBDIR"
