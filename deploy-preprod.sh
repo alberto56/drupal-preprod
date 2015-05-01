@@ -65,11 +65,11 @@ else
   echo "[info] DIR is $DIR"
   cd "$DIR" &&
   echo "drop database $DBNAME if exists; create database $DBNAME charset utf8;" | drush sqlc
-  mkdir -p ~/$PROJECT
-  wget --progress=dot:giga -N $FILES -P ~/$PROJECT
-  tar -xzf ~/$PROJECT/$FILES
-  wget --progress=dot:giga -N $DB -P ~/$PROJECT
-  zcat ~/$PROJECT/*.sql.gz | drush sqlc
+  mkdir -p ~/deploy-preprod-user-data/$PROJECT
+  wget --progress=dot:giga -N $FILES -P ~/deploy-preprod-user-data/$PROJECT
+  tar -xzf ~/deploy-preprod-user-data/$PROJECT/$FILES
+  wget --progress=dot:giga -N $DB -P ~/deploy-preprod-user-data/$PROJECT
+  zcat ~/deploy-preprod-user-data/$PROJECT/$DB | drush sqlc
 
 fi
 
