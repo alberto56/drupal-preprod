@@ -64,7 +64,7 @@ else
   echo "[info] DBNAME is $DBNAME"
   echo "[info] DIR is $DIR"
   cd "$DIR" &&
-  QUERY="DROP DATABASE $DBNAME IF EXISTS; CREATE $DBNAME charset utf8;"
+  QUERY="DROP DATABASE IF EXISTS $DBNAME; CREATE $DBNAME charset utf8;"
   echo "[info] About to run $QUERY"
   echo $QUERY | drush sqlc
   mkdir -p ~/deploy-preprod-user-data/$PROJECT
