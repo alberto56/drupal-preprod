@@ -77,7 +77,7 @@ else
   wget --progress=dot:giga -N $FILES -P ~/deploy-preprod-user-data/$PROJECT
   tar -xzf ~/deploy-preprod-user-data/$PROJECT/$FILESNAME
   wget --progress=dot:giga -N $DB -P ~/deploy-preprod-user-data/$PROJECT
-  zcat ~/deploy-preprod-user-data/$PROJECT/$$DBNAME | drush sqlc
+  zcat ~/deploy-preprod-user-data/$PROJECT/$DBNAME | drush sqlc
 
 fi
 
