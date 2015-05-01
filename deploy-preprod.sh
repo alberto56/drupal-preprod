@@ -68,8 +68,8 @@ else
   echo "[info] About to run $QUERY"
   echo $QUERY | drush sqlc
   mkdir -p ~/deploy-preprod-user-data/$PROJECT
-  $FILESNAME = echo $FILES|sed 's/.*\///g';
-  $DBNAME = echo $DB|sed 's/.*\///g';
+  FILESNAME=$(echo $FILES|sed 's/.*\///g')
+  DBNAME=$(echo $DB|sed 's/.*\///g')
   echo -e "[info] FILES is $FILES"
   echo -e "[info] DB is $DB"
   echo -e "[info] FILESNAME is $FILESNAME"
