@@ -87,7 +87,7 @@ echo "[info] About to attempt to build the preprod site"
 
 if [ -n "$DB" ]
   then
-    ~/drupal-preprod/deploy-preprod.sh -d $DIR/preprod -f $FILES -b $DB
+    ~/drupal-preprod/deploy-preprod.sh -r "$BRANCH" -p "$PROJECT" -h "$HASH" -d $DIR/preprod -f $FILES -b $DB
     if [ -e ./scripts/deploy/drupal-preprod-post-deploy.sh ]
       then
         echo -e "[info] $(pwd)/scripts/deploy/drupal-preprod-post-deploy.sh does exist and will be run now"

@@ -15,11 +15,17 @@ if [ "$#" -eq "0" ]
     echo ""
     echo "Usage:"
     echo ""
-    echo "./deploy-preprod.sh -d /path/to/drupal -f 'https://example.com/files.tar.gz -b http://example.com/database.sql.gz'"
+    echo "./deploy-preprod.sh -p project -h abc123 -d /path/to/drupal -f 'https://example.com/files.tar.gz -b http://example.com/database.sql.gz'"
 else
-  while getopts ":d:f:b:" opt; do
+  while getopts ":d:f:b:r:p:h:" opt; do
     case $opt in
+      p) PROJECT="$OPTARG"
+      ;;
+      h) HASH="$OPTARG"
+      ;;
       d) DIR="$OPTARG"
+      ;;
+      d) BRANCH="$BRANCH"
       ;;
       f) FILES="$OPTARG"
       ;;
@@ -42,12 +48,14 @@ else
   SUBDIR="$DIR/$IDENTITY";
   DBNAME=$(echo $IDENTITY|sed -e 's/-//g')
 
-  if [ -z "$BRANCH" ]; then echo "Internal error: the variable BRANCH is not set."; exit 1; fi
-  if [ -z "$SANITIZEDBRANCH" ]; then echo "Internal error: the variable SANITIZEDBRANCH is not set."; exit 1; fi
-  if [ -z "$IDENTITY" ]; then echo "Internal error: the variable IDENTITY is not set."; exit 1; fi
-  if [ -z "$SUBDIR" ]; then echo "Internal error: the variable SUBDIR is not set."; exit 1; fi
-  if [ -z "$DBNAME" ]; then echo "Internal error: the variable DBNAME is not set."; exit 1; fi
-  if [ -z "$DIR" ]; then echo "Internal error: the variable DIR is not set."; exit 1; fi
+  if [ -z "$BRANCH" ]; then echo -e "[error] Internal error: the variable BRANCH is not set."; exit 1; fi
+  if [ -z "$PROJECT" ]; then echo -e "[error] Internal error: the variable PROJECT is not set."; exit 1; fi
+  if [ -z "$HASH" ]; then echo -e "[error] Internal error: the variable HASH is not set."; exit 1; fi
+  if [ -z "$SANITIZEDBRANCH" ]; then echo -e "[error] Internal error: the variable SANITIZEDBRANCH is not set."; exit 1; fi
+  if [ -z "$IDENTITY" ]; then echo -e "[error] Internal error: the variable IDENTITY is not set."; exit 1; fi
+  if [ -z "$SUBDIR" ]; then echo -e "[error] Internal error: the variable SUBDIR is not set."; exit 1; fi
+  if [ -z "$DBNAME" ]; then echo -e "[error] Internal error: the variable DBNAME is not set."; exit 1; fi
+  if [ -z "$DIR" ]; then echo -e "[error] Internal error: the variable DIR is not set."; exit 1; fi
 
   echo "[info] BRANCH is $BRANCH"
   echo "[info] SANITIZEDBRANCH is $SANITIZEDBRANCH"
