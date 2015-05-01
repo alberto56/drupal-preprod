@@ -37,6 +37,8 @@ else
   echo -e "[info] Path is $DIR"
   cd "$DIR"
   echo -e "[info] Currently in $(pwd)"
+  echo -e "[info] Contents of sites/default:"
+  ls -lah sites/default
   echo "[info] Modules are $MODULES"
 
   /bin/drush -y en $MODULES &&
