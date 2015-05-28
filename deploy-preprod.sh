@@ -77,7 +77,7 @@ else
   wget --progress=dot:giga -N $FILES -P ~/deploy-preprod-user-data/$PROJECT
   tar -xzf ~/deploy-preprod-user-data/$PROJECT/$FILESNAME
   wget --progress=dot:giga -N $DB -P ~/deploy-preprod-user-data/$PROJECT
-  zcat ~/deploy-preprod-user-data/$PROJECT/$DBNAME | drush $(drush sql-connect) -f
+  zcat ~/deploy-preprod-user-data/$PROJECT/$DBNAME | $(drush sql-connect) -f
 
 fi
 
